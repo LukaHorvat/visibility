@@ -3,8 +3,11 @@ module Data.Geometry.Polygon where
 import Data.Geometry.Point
 
 data    Segment       = Segment Point Point                   deriving (Eq, Ord, Read, Show)
-newtype SimplePolygon = Simple [Point]                        deriving (Eq, Ord, Read, Show)
-data    Polygon       = Polygon SimplePolygon [SimplePolygon] deriving (Eq, Ord, Read, Show)
+newtype SimplePolygon = Simple [Point] -- ^ Construct a simple polygon from points in a CCW order
+                        deriving (Eq, Ord, Read, Show)
+data    Polygon       = Polygon SimplePolygon [SimplePolygon] -- ^ Construct a polygon from an
+                                                              -- simple polygon and a list of holes.
+                        deriving (Eq, Ord, Read, Show)
 
 pairwise :: [a] -> [(a, a)]
 pairwise [] = []
